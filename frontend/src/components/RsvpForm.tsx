@@ -21,7 +21,7 @@ export const RsvpForm = (props: Props) => {
                 if (data) {
                     console.log(data)
                     setStatusError('');
-                    return history.push(`/invited/${code}`);
+                    return history.push({pathname:`/invited/${code}`, state:{detail:[data]}});
                 }
             }).catch(()=> {
                 return setStatusError('Hmm.. we don\'t recognize this code.');
