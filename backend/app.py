@@ -1,102 +1,115 @@
 from flask import Flask, request, jsonify
-from flask_sqlalchemy import SQLAlchemy 
-from flask_marshmallow import Marshmallow 
+from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
 import os
 
 # Init app
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 # Database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
+    os.path.join(basedir, 'db.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Init db
 db = SQLAlchemy(app)
 # Init ma
 ma = Marshmallow(app)
 
-# Product Class/Model
-class Product(db.Model):
-  id = db.Column(db.Integer, primary_key=True)
-  name = db.Column(db.String(100), unique=True)
-  description = db.Column(db.String(200))
-  price = db.Column(db.Float)
-  qty = db.Column(db.Integer)
+# Guest Class/Model
 
-  def __init__(self, name, description, price, qty):
-    self.name = name
-    self.description = description
-    self.price = price
-    self.qty = qty
 
-# Product Schema
-class ProductSchema(ma.Schema):
-  class Meta:
-    fields = ('id', 'name', 'description', 'price', 'qty')
+class Guest(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), unique=True)
+    rsvp = db.Column(db.Boolean, nullable=False)
+    invite_code = db.Column(db.String(6), nullable=False)
+
+    def __init__(self, name, rsvp, invite_code):
+        self.name = name
+        self.rsvp = rsvp
+        self.invite_code = invite_code
+
+# Guest Schema
+
+
+class GuestSchema(ma.Schema):
+    class Meta:
+        fields = ('id', 'name', 'rsvp', 'invite_code')
+
 
 # Init schema
-product_schema = ProductSchema()
-products_schema = ProductSchema(many=True)
+guest_schema = GuestSchema()
+guests_schema = GuestSchema(many=True)
 
-# Create a Product
-@app.route('/product', methods=['POST'])
-def add_product():
-  name = request.json['name']
-  description = request.json['description']
-  price = request.json['price']
-  qty = request.json['qty']
+# Create a Guest
 
-  new_product = Product(name, description, price, qty)
 
-  db.session.add(new_product)
-  db.session.commit()
+@app.route('/guest', methods=['POST'])
+def add_guest():
+    name = request.json['name']
+    rsvp = request.json['rsvp']
+    invite_code = request.json['invite_code']
 
-  return product_schema.jsonify(new_product)
+    new_guest = Guest(name, rsvp, invite_code)
 
-# Get All Products
-@app.route('/product', methods=['GET'])
-def get_products():
-  all_products = Product.query.all()
-  result = products_schema.dump(all_products)
-  return jsonify(result)
+    db.session.add(new_guest)
+    db.session.commit()
 
-@app.route('/product/<id>', methods=['GET'])
-def get_product(id):
-  product = Product.query.get(id)
-  return product_schema.jsonify(product)
+    return guest_schema.jsonify(new_guest)
 
-@app.route('/product/<id>', methods=['PATCH'])
-def update_product(id):
-  product = Product.query.get(id)
+# Get All Guests
 
-  if request.json['name']:
-    product.name = request.json['name'] 
-  if request.json['description']:
-    product.description = request.json['description']
-  if request.json['price']:
-    product.price = request.json['price']
-  if request.json['qty']: 
-    product.qty = request.json['qty']
 
-  # name = request.json['name']
-  # description = request.json['description']
-  # price = request.json['price']
-  # qty = request.json['qty']
+@app.route('/guest', methods=['GET'])
+def get_guests():
+    all_guests = Guest.query.all()
+    result = guests_schema.dump(all_guests)
+    return jsonify(result)
 
-  # product.name = name
-  # product.description = description
-  # product.price = price
-  # product.qty = qty
 
-  db.session.commit()
+# @app.route('/guest/<id>', methods=['GET'])
+# def get_guest(id):
+#     guest = Guest.query.get(id)
+#     return guest_schema.jsonify(guest)
 
-  return product_schema.jsonify(product)
 
-@app.route('/product/<id>', methods=['DELETE'])
-def delete_product(id):
-  product = Product.query.get(id)
-  db.session.delete(product)
-  db.session.commit()
-  return product_schema.jsonify(product)
+@app.route('/guest/<code>', methods=['GET'])
+def get_guest(code):
+    guest = Guest.query.filter_by(invite_code=code).all()
+    return guest_schema.jsonify(guest)
+
+
+@app.route('/guest/<id>', methods=['PATCH'])
+def update_guest(id):
+    guest = Guest.query.get(id)
+
+    if request.json['name']:
+        guest.name = request.json['name']
+    if request.json['rsvp']:
+        guest.rsvp = request.json['rsvp']
+    if request.json['invite_code']:
+        guest.invite_code = request.json['invite_code']
+
+    # name = request.json['name']
+    # rsvp = request.json['rsvp']
+    # invite_code = request.json['invite_code']
+
+    # guest.name = name
+    # guest.rsvp = rsvp
+    # guest.invite_code = invite_code
+
+    db.session.commit()
+
+    return guest_schema.jsonify(guest)
+
+
+@app.route('/guest/<id>', methods=['DELETE'])
+def delete_guest(id):
+    guest = Guest.query.get(id)
+    db.session.delete(guest)
+    db.session.commit()
+    return guest_schema.jsonify(guest)
+
 
 if __name__ == '__main__':
-  app.run(debug=True)
+    app.run(debug=True)
