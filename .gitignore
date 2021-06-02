@@ -1,6 +1,9 @@
 /.DS_Store
 /.vscode
+<<<<<<< HEAD
 /db.sqlite
+=======
+>>>>>>> origin/backend
 /.env
 /node_modules
 node_modules/
