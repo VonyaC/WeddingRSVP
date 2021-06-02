@@ -72,11 +72,11 @@ def get_guests():
 #     guest = Guest.query.get(id)
 #     return guest_schema.jsonify(guest)
 
-
 @app.route('/guest/<code>', methods=['GET'])
 def get_guest(code):
     guest = Guest.query.filter_by(invite_code=code).all()
-    return guest_schema.jsonify(guest)
+    result = guests_schema.dump(guest)
+    return jsonify(result)
 
 
 @app.route('/guest/<id>', methods=['PATCH'])
