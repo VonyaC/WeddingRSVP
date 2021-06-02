@@ -13,7 +13,7 @@ export const RsvpForm = (props: Props) => {
 
     const checkReservation = (e: any) => {
         e.preventDefault();
-        setInvited([{name: 'Stephanie Hepburn'}, {name: 'Wayde Hepburn'}]);
+        // setInvited([{name: 'Stephanie Hepburn'}, {name: 'Wayde Hepburn'}]);
         if (invited.length>0) {
             setStatusError('');
             return history.push(`/invited/${code}`)
