@@ -27,7 +27,7 @@ export const RsvpForm = (props: Props) => {
                 return setStatusError('Hmm.. we don\'t recognize this code.');
             });
         } else {
-            return setStatusError('Sorry, so you have a code?');
+            return setStatusError('Sorry, do you have a code?');
         }
     };
 
