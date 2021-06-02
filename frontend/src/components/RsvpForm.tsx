@@ -1,5 +1,6 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState} from 'react';
 import {useHistory} from 'react-router-dom';
+import axios from 'axios';
 
 interface Props {
     
@@ -13,18 +14,22 @@ export const RsvpForm = (props: Props) => {
 
     const checkReservation = (e: any) => {
         e.preventDefault();
-        // setInvited([{name: 'Stephanie Hepburn'}, {name: 'Wayde Hepburn'}]);
-        if (invited.length>0) {
-            setStatusError('');
-            return history.push(`/invited/${code}`)
+        if (code != '') {
+            axios.get(`https://jsonplaceholder.typicode.com/posts/${code}`).then(res => {
+                setInvited(res);
+                const { data } = res
+                if (data) {
+                    console.log(data)
+                    setStatusError('');
+                    return history.push(`/invited/${code}`)
+                }
+            }).catch(()=> {
+                return setStatusError('Hmm.. we don\'t recognize this code.');
+            });
         } else {
-            return setStatusError('Hmm.. we don\'t recognize this code.');
+            return setStatusError('Sorry, so you have a code?');
         }
     };
-    
-    // useEffect(() => {
-        
-    // }, []);
 
     return (
         <div className="rsvp">
@@ -40,7 +45,6 @@ export const RsvpForm = (props: Props) => {
                             <input type="submit" value="Check code" className='btn btn-rsvp'/>
                         </form>
                     </div>
-                    <div>{invited.map((person: any)=> person.name)}</div>
                 </div>
         </div>
     )
