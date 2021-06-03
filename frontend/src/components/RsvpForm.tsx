@@ -14,12 +14,12 @@ export const RsvpForm = (props: Props) => {
 
     const checkReservation = (e: any) => {
         e.preventDefault();
-        if (code != '') {
-            axios.get(`https://jsonplaceholder.typicode.com/posts/${code}`).then(res => {
+        if (code !== '') {
+            axios.get(`/guest/${code}`).then(res => {
                 setInvited(res);
                 const { data } = res
-                if (data) {
-                    console.log(data)
+                if (data.length > 0) {
+                    // console.log(data)
                     setStatusError('');
                     return history.push({pathname:`/invited/${code}`, state:{detail:[data]}});
                 }
@@ -41,7 +41,7 @@ export const RsvpForm = (props: Props) => {
                         <form onSubmit={checkReservation} className='rsvp-form'>
                             <label htmlFor="findRSVP" className='form-label'>Enter your invitation code</label><br />
                             <input type="text" id='findRSVP' className='textfield'name='code' onChange={(e: any)=> { setCode(e.target.value)}}/>
-                                {invited.length==0 && <div className='form-error'>{statusError}</div>}
+                                {invited.length===0 && <div className='form-error'>{statusError}</div>}
                             <input type="submit" value="Check code" className='btn btn-rsvp'/>
                         </form>
                     </div>
