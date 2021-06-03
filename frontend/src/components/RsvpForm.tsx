@@ -9,22 +9,21 @@ interface Props {
 export const RsvpForm = (props: Props) => {
     const [code, setCode] = useState('');
     const [statusError, setStatusError] = useState('');
-    let [invited, setInvited] = useState<any>([]);
     let history = useHistory();
 
     const checkReservation = (e: any) => {
         e.preventDefault();
         if (code !== '') {
             axios.get(`/guest/${code}`).then(res => {
-                setInvited(res);
                 const { data } = res
                 if (data.length > 0) {
-                    // console.log(data)
                     setStatusError('');
-                    return history.push({pathname:`/invited/${code}`, state:{detail:[data]}});
+                    return history.push(`/invited/${code}`);
+                } else {
+                    return setStatusError('Hmm.. we don\'t recognize this code.');
                 }
             }).catch(()=> {
-                return setStatusError('Hmm.. we don\'t recognize this code.');
+                return setStatusError('Hmm.. seems like we have a problem. Try again later.');
             });
         } else {
             return setStatusError('Sorry, do you have a code?');
@@ -41,7 +40,7 @@ export const RsvpForm = (props: Props) => {
                         <form onSubmit={checkReservation} className='rsvp-form'>
                             <label htmlFor="findRSVP" className='form-label'>Enter your invitation code</label><br />
                             <input type="text" id='findRSVP' className='textfield'name='code' onChange={(e: any)=> { setCode(e.target.value)}}/>
-                                {invited.length===0 && <div className='form-error'>{statusError}</div>}
+                                {statusError!=='' && <div className='form-error'>{statusError}</div>}
                             <input type="submit" value="Check code" className='btn btn-rsvp'/>
                         </form>
                     </div>

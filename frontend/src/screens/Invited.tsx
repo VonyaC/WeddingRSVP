@@ -22,12 +22,11 @@ export const Invited = (props: Props) => {
             return console.log('didn\'t work')
         });
         
-    },[])
+    },[code])
     return (
         
         <div>
             {invited.map((person: any)=>{
-                console.log(person);
                 return <div key={person.id}> {person.name} </div>
             })}
         </div>
