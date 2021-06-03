@@ -60,7 +60,7 @@ def add_guest():
 # Get All Guests
 
 
-@app.route('/guest', methods=['GET'])
+@app.route('/guests', methods=['GET'])
 def get_guests():
     all_guests = Guest.query.all()
     result = guests_schema.dump(all_guests)
