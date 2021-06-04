@@ -2,12 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useParams} from 'react-router-dom'
 
-
-interface Props {
-    
-}
-
-export const Invited = (props: Props) => {
+export const Invited = () => {
 
     const [invited, setInvited] = useState<any>([]);
     let { code } = useParams<any>();
@@ -23,7 +18,7 @@ export const Invited = (props: Props) => {
     const submitRsvp = () => {
         console.log(rsvp);
     };
-    
+
     useEffect(()=>{
         axios.get(`/guest/${code}`).then(res => {
             const { data } = res
