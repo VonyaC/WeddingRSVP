@@ -79,11 +79,13 @@
   display: flex;
   width: 300px;
   justify-content: center;
-  /* background-color: #EEEEEE; */
   margin-bottom: 4px;
   padding: 4px 16px;
-  border-top: 1px solid #EEEEEE;
   border-bottom: 1px solid #EEEEEE;
+}
+
+.guest-rsvp:nth-child(1) {
+  border-top: 1px solid #EEEEEE;
 }
 
 .rsvp-option {

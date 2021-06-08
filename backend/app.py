@@ -78,7 +78,7 @@ def get_guest(code):
     guest = Guest.query.filter_by(invite_code=code).all()
     result = guests_schema.dump(guest)
     if not guest:
-        abort(40, "You aren not a guest. Sorry, but you can still buy a gift")
+        abort(400, "You aren not a guest. Sorry, but you can still buy a gift")
     return jsonify(result)
 
 
