@@ -8,7 +8,7 @@ export const Invited = () => {
     let { code } = useParams<any>();
     let rsvp : any = [...invited];
 
-    const handleChange = (e : any) => {
+    const updateRsvpStatus = (e : any) => {
         for (let i = 0; i<rsvp.length; i++) {
             if (rsvp[i].id === parseInt(e.target.value)) {
                 rsvp[i].rsvp = e.target.checked;
@@ -23,7 +23,6 @@ export const Invited = () => {
         axios.get(`/guest/${code}`).then(res => {
             const { data } = res
             setInvited(data);
-            
 
         }).catch(()=> {
             return console.log('didn\'t work')
@@ -42,7 +41,7 @@ export const Invited = () => {
                     <div className="guest"><p>{person.name}</p></div>
                         <div className="rsvp-option">
                             <div className="button r" id="button-1">
-                                <input type="checkbox" onChange={handleChange} value={person.id} defaultChecked={person.rsvp} className="checkbox" />
+                                <input type="checkbox" onChange={updateRsvpStatus} value={person.id} defaultChecked={person.rsvp} className="checkbox" />
                             <div className="knobs"></div>
                             <div className="layer"></div>
                         </div>
@@ -54,7 +53,7 @@ export const Invited = () => {
 
 
             </div>
-        </div>
+            </div>
         </div>
 
     )
