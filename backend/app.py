@@ -1,4 +1,5 @@
-from flask import Flask, request, jsonify
+from operator import rshift
+from flask import Flask, request, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 import os
@@ -54,7 +55,6 @@ def add_guest():
 
     db.session.add(new_guest)
     db.session.commit()
-
     return guest_schema.jsonify(new_guest)
 
 # Get All Guests
@@ -76,19 +76,25 @@ def get_guests():
 def get_guest(code):
     guest = Guest.query.filter_by(invite_code=code).all()
     result = guests_schema.dump(guest)
+    if not guest:
+        abort(40, "You aren not a guest. Sorry, but you can still buy a gift")
     return jsonify(result)
 
 
-@app.route('/guest/<id>', methods=['PATCH'])
-def update_guest(id):
-    guest = Guest.query.get(id)
+# @app.route('/guest/<code>', methods=['PATCH'])
+# def update_guest(code):
+    # guest = Guest.query.get(id)
 
-    if request.json['name']:
-        guest.name = request.json['name']
-    if request.json['rsvp']:
-        guest.rsvp = request.json['rsvp']
-    if request.json['invite_code']:
-        guest.invite_code = request.json['invite_code']
+    # Get all gues attached to the invite code
+    # guest = Guest.query.filter_by(invite_code=code).all()
+    # result = guests_schema.dump(guest)
+
+    # Check the rsvp status that comes from the frontend to see if it matches what is in the db
+    # If they are different, update the db using the status from the frontend
+
+    # guest = Guest.query.get(id)
+
+    # guest_rsvp = request.json['rsvp']
 
     # name = request.json['name']
     # rsvp = request.json['rsvp']
@@ -98,9 +104,30 @@ def update_guest(id):
     # guest.rsvp = rsvp
     # guest.invite_code = invite_code
 
+    # db.session.commit()
+
+    # return jsonify(guest_rsvp)
+
+@app.route('/guest/<code>', methods=['PATCH'])
+def update_guest(code):
+    # Get data from database that has this invite code
+    guest = Guest.query.filter_by(invite_code=code).all()
+    result = guests_schema.dump(guest)
+    # Get the request body that was sent from the frontend
+    data = request.json
+
+    # Loop through all of the data from the request body
+    temp = []
+    for i in range(0, len(result)):
+        for person in data:
+            # Update data where request id is the same as the database id
+            if result[i]['id'] == person['id']:
+                guest[i].rsvp = person['rsvp']
+                temp.append(person)
+
     db.session.commit()
 
-    return guest_schema.jsonify(guest)
+    return jsonify(temp)
 
 
 @app.route('/guest/<id>', methods=['DELETE'])
