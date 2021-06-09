@@ -21,10 +21,13 @@ const Home: React.FC = () => {
                             <p>Stefano and Charvonya Hepburn </p>
                         </div>
                         <div className="gift left-box">
-                            <h3> Monetary</h3>
+                            <h3> Monetary <span className='preferred'>Preferred</span></h3>
                             <h4>CIBC</h4>
                             <p>Stefano Hepburn or Charvonya Cox </p>
                             <p>Account number: 201655893</p>
+                            <h4>Cash</h4>
+                            <h4>Cheque</h4>
+                            <p>Stefano Hepburn or Charvonya Cox </p>
 
                         </div>
                     </div>
