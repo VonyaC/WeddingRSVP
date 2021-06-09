@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import {useParams} from 'react-router-dom'
+import {useParams, useHistory} from 'react-router-dom'
 
 export const Invited = () => {
 
     const [invited, setInvited] = useState<any>([]);
     let { code } = useParams<any>();
     let rsvp : any = [...invited];
+    let history = useHistory();
 
     const updateRsvpStatus = (e : any) => {
         for (let i = 0; i<rsvp.length; i++) {
@@ -25,7 +26,8 @@ export const Invited = () => {
                     attending.push(data);
                 }
             }
-            console.log(attending.length)
+            return history.push({pathname: `/wedding-info`, state:{attending: attending.length}});
+
         })
     };
 

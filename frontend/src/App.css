@@ -195,3 +195,28 @@
     transition: 0.3s ease all;
     z-index: 1;
 }
+
+.row {
+  max-width: 1200px;
+  width: 80%;
+  margin: 0 auto;
+}
+.side-by-side {
+  display: flex;
+}
+
+.left-box, .right-box{
+  width: 50%;
+
+
+}
+.main {
+  height: 90vh;
+}
+.main-photo {
+  max-height : 100%;
+}
+
+.gift-selection {
+  padding-top: 32px;
+}

@@ -2,11 +2,7 @@ import React,{useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 
-interface Props {
-    
-}
-
-export const RsvpForm = (props: Props) => {
+export const RsvpForm = () => {
     const [code, setCode] = useState('');
     const [statusError, setStatusError] = useState('');
     let history = useHistory();
