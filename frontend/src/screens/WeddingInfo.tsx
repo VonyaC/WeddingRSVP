@@ -4,24 +4,24 @@ import {useLocation} from 'react-router-dom'
 interface Props {
     
 }
-interface LocationState {
-    state?: {
-        attending?: string;
-    }
-}
 export const WeddingInfo = (props: Props) => {
-    const {state} = useLocation<LocationState>();
+    
+    const {state} = useLocation<any>();
+    const { attending } = state
+    
     let isAttending = false;
-    if (state> 0 || typeof(state) !== 'undefined') {
+    if (typeof(state) !== 'undefined' && attending > 0) {
         isAttending = true
-        console.log('this was called')
     } else {
         isAttending = false
     }
     
     return (
-        <div> 
-            {isAttending ? 'hi' : 'no'}
+        <div className='row'> 
+            <div className="rsvp-card">
+                <p>Thank you. Your response has been recorded.{isAttending && ' Your invitation will be sent at a later date.'}</p>
+                <p><span>You can safely close this page.</span></p>
+            </div>
         </div>
     )
 }

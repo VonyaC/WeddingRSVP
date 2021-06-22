@@ -1,14 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Arsenal:wght@400;700');
+@import url('https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap');
+body {
+  background-color: #F7FFFF;
+}
 *, html, body {
   box-sizing: border-box;
+  font-family: 'Arsenal';
 }
 
-.rsvp-page {
-  background-color: #F7FFFF;
-  height: 100vh;
+.navigation {
+  padding: 16px 0;
+  text-align: center;
+}
+.navigation a {
+  color: #252525;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 .rsvp-card {
   background-color: #FFFFFF;
-  width: 400px;
+  max-width: 400px;
+  width: 80%;
   height: auto;
   border-radius: 12px;
   margin: 0;
@@ -21,6 +36,13 @@
   box-shadow: 0px 4px 80px rgba(190, 190, 190, 0.2);
 }
 
+.btn-rsvp {
+  background: linear-gradient(90deg, rgba(7,109,222,1) 0%, rgba(0,121,255,1) 100%);
+  color: #FFFFFF;
+  width: 80%;
+  margin: 0 auto;
+}
+
 .intro-box {
   font-size: 24px;
   font-weight: 500;
@@ -29,22 +51,6 @@
   width: 80%;
 }
 
-.btn {
-  padding: 12px 32px;
-  border-radius: 4px;
-  border: 0;
-  font-size: 16px;
-  cursor: pointer;
-  font-weight: 400;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-
-}
-.form-label {
-  font-size: 16px;
-  color: #2B2B2B;
-  font-weight: 300;
-}
 .textfield {
   padding: 12px;
   width: 80%;
@@ -56,12 +62,27 @@
   letter-spacing: 2px;
   text-align: center;
 }
-.btn-rsvp {
-  background: linear-gradient(90deg, rgba(7,109,222,1) 0%, rgba(0,121,255,1) 100%);
-  color: #FFFFFF;
-  width: 80%;
-  margin: 0 auto;
+
+
+
+.btn {
+  padding: 12px 32px;
+  border-radius: 4px;
+  border: 0;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+
 }
+.form-label {
+  font-size: 16px;
+  color: #2B2B2B;
+  font-weight: 300;
+}
+
+
 .btn-rsvp:hover {
   background: #489fff;
 }
@@ -102,7 +123,6 @@
   text-transform: uppercase;
   color: #3a3a3a;
 }
-
 
 #button-1 .knobs:before
 {
@@ -205,27 +225,122 @@
   display: flex;
 }
 
-.left-box, .right-box{
+.box {
   width: 50%;
-
-
 }
-.main {
-  height: 90vh;
+
+.left-box {
+  padding-top: 80px;
 }
+
 .main-photo {
-  max-height : 100%;
-}
+  width: 80%;
 
+}
+.right-box {
+  text-align: right; 
+  padding-top: 80px;
+}
 .gift-selection {
   padding-top: 32px;
 }
 
 .preferred {
-  /* color: white; */
   background-color: #FFE47C;
   padding: 4px 8px;
   border-radius: 2px;
   font-size: 12px;
   margin-left: 8px;
+  color: #252525;
+  font-family: 'Arsenal';
+  text-transform: uppercase;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  color: #252525;
+  font-family: 'Philosopher';
+  
+}
+
+h4, p {
+  margin-bottom: 8px;
+  font-weight: 300;
+}
+h1, h3 {
+  margin-bottom: 16px;
+}
+h1, h2 {
+  text-transform: uppercase;
+  color: #2B39BB;
+}
+
+.cta-btn {
+  background-color: #2B39BB;
+  margin-top: 16px;
+  color: #FFF;
+}
+
+.box:not(:last-child) {
+  padding-right: 24px;
+}
+p {
+  line-height: 140%;
+  letter-spacing: 0.05em;
+  color: #565656
+}
+
+.gift-subheader {
+  font-weight: 600;
+}
+p span {
+  font-weight: 600;
+}
+
+.gift-section {
+  margin-top: 40px;
+}
+
+.rsvp-item p{
+  margin-top: 0;
+}
+
+.rsvp-item h4 {
+  margin: 0;
+}
+.rsvp-item {
+  margin-bottom: 4px;
+}
+
+@media (max-width: 480px) {
+  .intro-box {
+    width: 100%;
+  }
+  .btn-rsvp {
+    width: 100%;
+  }
+  .textfield  {
+    width: 100%;
+  }
+  .side-by-side {
+    flex-direction: column;
+  }
+  .box {
+    width: 100%;
+    margin-bottom: 32px;
+  }
+  .box:not(:last-child) {
+    padding-right: 0;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .main-photo {
+    width: 100%;
+  }
+  .right-box {
+    padding-top: 40px;
+  }
 }
