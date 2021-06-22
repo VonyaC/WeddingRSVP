@@ -2,11 +2,7 @@ import React,{useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 
-interface Props {
-    
-}
-
-export const RsvpForm = (props: Props) => {
+export const RsvpForm = () => {
     const [code, setCode] = useState('');
     const [statusError, setStatusError] = useState('');
     let history = useHistory();
@@ -23,7 +19,7 @@ export const RsvpForm = (props: Props) => {
                     return setStatusError('Hmm.. we don\'t recognize this code.');
                 }
             }).catch(()=> {
-                return setStatusError('Hmm.. seems like we have a problem. Try again later.');
+                return setStatusError('Hmm.. we don\'t recognize this code.');
             });
         } else {
             return setStatusError('Sorry, do you have a code?');
