@@ -19,7 +19,7 @@ export const Invited = () => {
     const submitRsvp = () => {
         // console.log(rsvp);
         const attending : any = []
-        axios.patch(`/guest/${code}`,rsvp).then(res => {
+        axios.patch(`api/guest/${code}`,rsvp).then(res => {
             const {data} = res;
             for (let i = 0; i<data.length; i++) {
                 if (data[i].rsvp) {

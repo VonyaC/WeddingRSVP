@@ -10,7 +10,7 @@ export const RsvpForm = () => {
     const checkReservation = (e: any) => {
         e.preventDefault();
         if (code !== '') {
-            axios.get(`/guest/${code}`).then(res => {
+            axios.get(`api/guest/${code}`).then(res => {
                 const { data } = res
                 if (data.length > 0) {
                     setStatusError('');

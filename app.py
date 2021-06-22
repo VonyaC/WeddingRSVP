@@ -45,7 +45,7 @@ guests_schema = GuestSchema(many=True)
 # Create a Guest
 
 
-@app.route('/guest', methods=['POST'])
+@app.route('/api/guest', methods=['POST'])
 def add_guest():
     name = request.json['name']
     rsvp = request.json['rsvp']
@@ -60,7 +60,7 @@ def add_guest():
 # Get All Guests
 
 
-@app.route('/guests', methods=['GET'])
+@app.route('/api/guests', methods=['GET'])
 def get_guests():
     all_guests = Guest.query.all()
     result = guests_schema.dump(all_guests)
@@ -73,7 +73,7 @@ def get_guests():
 #     return guest_schema.jsonify(guest)
 
 
-@app.route('/guest/<code>', methods=['GET'])
+@app.route('/api/guest/<code>', methods=['GET'])
 def get_guest(code):
     guest = Guest.query.filter_by(invite_code=code).all()
     result = guests_schema.dump(guest)
@@ -109,7 +109,7 @@ def get_guest(code):
 
     # return jsonify(guest_rsvp)
 
-@app.route('/guest/<code>', methods=['PATCH'])
+@app.route('/api/guest/<code>', methods=['PATCH'])
 def update_guest(code):
     # Get data from database that has this invite code
     guest = Guest.query.filter_by(invite_code=code).all()
@@ -131,7 +131,7 @@ def update_guest(code):
     return jsonify(temp)
 
 
-@app.route('/guest/<id>', methods=['DELETE'])
+@app.route('/api/guest/<id>', methods=['DELETE'])
 def delete_guest(id):
     guest = Guest.query.get(id)
     db.session.delete(guest)
