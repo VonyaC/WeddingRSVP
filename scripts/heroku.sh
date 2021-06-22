@@ -17,6 +17,7 @@ fi
   if [ "$BUILD_ENV" = "frontend" ]; then
     npm start
   elif [ "$BUILD_ENV" = "backend" ]; then
+    pipenv shell
     python app.py
   else
     echo "Error: no build config for INATO_BUILD_ENV value '$INATO_BUILD_ENV'"
