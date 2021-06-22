@@ -1,1 +1,1 @@
-web: gunicorn rsvp-backend:app
+web: gunicorn app:app
