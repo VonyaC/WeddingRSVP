@@ -18,6 +18,7 @@ fi
     npm start
   elif [ "$BUILD_ENV" = "backend" ]; then
     pipenv shell
+    pipenv install
     python app.py
   else
     echo "Error: no build config for INATO_BUILD_ENV value '$INATO_BUILD_ENV'"
