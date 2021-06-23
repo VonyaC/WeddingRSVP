@@ -104,9 +104,7 @@ def get_guest(code):
     # guest.name = name
     # guest.rsvp = rsvp
     # guest.invite_code = invite_code
-
     # db.session.commit()
-
     # return jsonify(guest_rsvp)
 
 @app.route('/guest/<code>', methods=['PATCH'])
