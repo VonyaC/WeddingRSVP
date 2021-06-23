@@ -344,3 +344,8 @@ p span {
     padding-top: 40px;
   }
 }
+
+.small-text {
+  font-size: 14px;
+  
+}

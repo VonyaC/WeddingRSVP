@@ -30,7 +30,7 @@ export const RsvpForm = () => {
         <div className="rsvp">
                 <div className="rsvp-card">
                     <div className="intro-box">
-                        RSVP for the wedding of Hepburn + Cox.
+                        <h4>RSVP for the wedding of Hepburn + Cox.</h4>
                     </div>
                     <div className="rsvp-form">
                         <form onSubmit={checkReservation} className='rsvp-form'>
@@ -39,6 +39,9 @@ export const RsvpForm = () => {
                                 {statusError!=='' && <div className='form-error'>{statusError}</div>}
                             <input type="submit" value="Check code" className='btn btn-rsvp'/>
                         </form>
+                        <div className="intro-box">
+                        <p className='small-text'>* July 15th will be the last day to RSVP your attendance. Contact Charvonya or Stefano if there are any changes after this date.</p>
+                        </div>
                     </div>
                 </div>
         </div>
