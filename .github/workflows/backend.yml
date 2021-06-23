@@ -3,7 +3,7 @@ name: Deploy to Heroku (Backend)
 on:
   push:
     branches:
-      - master
+      - backend-testing
     paths:
       - "backend/**"
       - ".github/workflows/backend.yml"
