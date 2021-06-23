@@ -1,1 +1,1 @@
-web: cd backend; pipenv shell & wait -n; pipenv install & wait -n; gunicorn app:app
+web: uvicorn app:app
