@@ -4,8 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd frontend && npm install && npm start",
-    "heroku-postbuild": "./scripts/heroku.sh"
+    "start": "cd frontend && npm install && npm start"
   },
   "repository": {
     "type": "git",
