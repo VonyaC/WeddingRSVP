@@ -19,7 +19,7 @@ export const Invited = () => {
     const submitRsvp = () => {
         // console.log(rsvp);
         const attending : any = []
-        axios.patch(`/guest/${code}`,rsvp).then(res => {
+        axios.patch(`https://wedding-backend-rsvp.herokuapp.com/guest/${code}`,rsvp).then(res => {
             const {data} = res;
             for (let i = 0; i<data.length; i++) {
                 if (data[i].rsvp) {
@@ -32,7 +32,7 @@ export const Invited = () => {
     };
 
     useEffect(()=>{
-        axios.get(`/guest/${code}`).then(res => {
+        axios.get(`https://wedding-backend-rsvp.herokuapp.com/guest/${code}`).then(res => {
             const { data } = res
             setInvited(data);
 
