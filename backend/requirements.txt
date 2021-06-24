@@ -25,6 +25,7 @@ marshmallow-sqlalchemy==0.26.1
 pipenv==2018.11.26
 pycodestyle==2.7.0
 pydantic==1.8.2
+python-dotenv==0.18.0
 pytz==2021.1
 requests==2.25.1
 six==1.16.0
