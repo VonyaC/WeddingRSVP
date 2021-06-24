@@ -10,7 +10,8 @@ app = Flask(__name__)
 CORS(app)
 basedir = os.path.abspath(os.path.dirname(__file__))
 # Database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://fheqbrylgdgtdz:4ff8d24aaca42d1882e92fecd8a518dba318983da6010f9360b8b9ca159508f2@ec2-34-202-54-225.compute-1.amazonaws.com:5432/dec943tmbs3gla'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
+    os.path.join(basedir, 'db.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Init db
 db = SQLAlchemy(app)
@@ -21,7 +22,6 @@ ma = Marshmallow(app)
 
 
 class Guest(db.Model):
-    __tablename__ = 'guest'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True)
     rsvp = db.Column(db.Boolean, nullable=False)
