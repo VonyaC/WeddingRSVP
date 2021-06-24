@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import './App.css';
 import  { Home, RSVP, Invited, WeddingInfo, GuestList }  from './screens/screens';
 import { Navigation } from './components/Navigation';
+import { AddGuest } from './screens/AddGuest';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route path='/rsvp' component={RSVP}/>
             <Route path='/invited/:code'> <Invited /></Route>
             <Route path='/guest-list'> <GuestList /></Route>
+            <Route path='/add-guest'> <AddGuest /></Route>
             <Route exact path='/' component={Home}/>
             <Redirect to='/not-found' /> 
             <Route path='/not-found' />

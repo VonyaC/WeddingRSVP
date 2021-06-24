@@ -5,10 +5,9 @@ interface Props {
     
 }
 
-// const [guest, setGuest] = useState<any>([]);
-
 export const GuestList = (props: Props) => {
     const [guest, setGuest] = useState<any>([]);
+
     useEffect(()=>{
         axios.get(`https://wedding-backend-rsvp.herokuapp.com/guests`).then(res => {
             const { data } = res
@@ -17,12 +16,34 @@ export const GuestList = (props: Props) => {
         }).catch(()=> {
             return console.log('didn\'t work')
         });
-        
-    },[guest])
+
+    },[])
 
     return (
         <div className='row'>
-            {guest.map(g => {return <div key={g.id}> {g.name}</div>})}
+            <div><h3>Coming</h3></div>
+            {
+                guest.map((g) => {
+
+                    return (
+                        <div key={g.id}> 
+                            {g.rsvp && <p> {` ${g.name} ${g.invite_code}`}</p>}
+                        </div>
+                    )
+                })
+            }
+            <div><h3>Not coming</h3></div>
+
+            {
+                guest.map((g) => {
+                    return (
+                        <div key={g.id}> 
+                            {!g.rsvp && <p> {` ${g.name} ${g.invite_code}`}</p>}
+                        </div>
+                    )
+                })
+            }
+    
         </div>
     )
 }

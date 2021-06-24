@@ -347,5 +347,9 @@ p span {
 
 .small-text {
   font-size: 14px;
-  
+
+}
+
+.btn-group {
+  margin-bottom: 16px;
 }
