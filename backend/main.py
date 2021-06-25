@@ -29,8 +29,6 @@ ma = Marshmallow(app)
 
 # Guest Class/Model
 
-db.create_all()
-
 
 class Guest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
