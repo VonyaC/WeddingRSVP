@@ -15,6 +15,7 @@ load_dotenv()
 uri = os.getenv("DATABASE_URL")  # or other relevant config var
 if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
+print(uri)
 
 # Database
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
@@ -27,6 +28,8 @@ db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
 # Guest Class/Model
+
+db.create_all()
 
 
 class Guest(db.Model):
