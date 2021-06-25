@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import { Typography } from '../components/Text/Typography';
 
 interface Props {
     
@@ -21,24 +22,24 @@ export const GuestList = (props: Props) => {
 
     return (
         <div className='row'>
-            <div><h3>Coming</h3></div>
+            <div><Typography variant='h3'> Coming </Typography></div>
             {
                 guest.map((g) => {
 
                     return (
                         <div key={g.id}> 
-                            {g.rsvp && <p> {` ${g.name} ${g.invite_code}`}</p>}
+                            {g.rsvp && <Typography variant='p'> {` ${g.name} ${g.invite_code}`}</Typography>}
                         </div>
                     )
                 })
             }
-            <div><h3>Not coming</h3></div>
+            <div><Typography variant='h3'>Not coming</Typography></div>
 
             {
                 guest.map((g) => {
                     return (
                         <div key={g.id}> 
-                            {!g.rsvp && <p> {` ${g.name} ${g.invite_code}`}</p>}
+                            {!g.rsvp && <Typography variant='p'> {` ${g.name} ${g.invite_code}`}</Typography>}
                         </div>
                     )
                 })

@@ -8,10 +8,17 @@
     font-weight: 300;
     letter-spacing: 2px;
     text-align: center;
-  }
+}
 
 .error {
 color: red;
 margin-bottom: 8px;
 margin-top: -8px;
+}
+
+@media (max-width: 480px) {
+  .textfield  {
+    width: 100%;
+  }
+
 }

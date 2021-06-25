@@ -184,9 +184,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0;
   color: #252525;
   font-family: 'Philosopher';
-  
 }
-
 h4, p {
   margin-bottom: 8px;
   font-weight: 300;
@@ -201,13 +199,11 @@ h1, h2 {
 .small-text {
   font-size: 14px;
 }
-
 p {
   line-height: 140%;
   letter-spacing: 0.05em;
   color: #565656
 }
-
 p span {
   font-weight: 600;
 }
@@ -233,12 +229,12 @@ p span {
 .rsvp-item {
   margin-bottom: 4px;
 }
+.btn-group {
+  margin-bottom: 16px;
+}
 
 @media (max-width: 480px) {
   .intro-box {
-    width: 100%;
-  }
-  .textfield  {
     width: 100%;
   }
   .side-by-side {
@@ -263,8 +259,3 @@ p span {
   }
 }
 
-
-
-.btn-group {
-  margin-bottom: 16px;
-}
