@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Button } from './Button/Button';
+import { Textfield } from './TextField/Textfield';
 
 interface Props {
     
@@ -55,9 +56,7 @@ export const GuestForm = (props: Props) => {
                 formInputs.map((f, i)=> {
                     return (
                         <div key={f.id}>
-                            <label htmlFor={f.formName} className='form-label'>{f.formName}</label><br />
-                            <input type="text" id={f.formName} className='textfield' name={f.formName } onChange={(e: any)=> { handleChange(e, i)}}/>
-                                {/* {statusError!=='' && <div className='form-error'>{statusError}</div>} */}
+                            <Textfield id={f.formName} statusError={''} label={f.formName} onChange={(e: any)=> { handleChange(e, i)}}/>
                         </div>
                     )
                 })

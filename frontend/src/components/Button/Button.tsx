@@ -12,11 +12,11 @@ export const Button = (props: Props) => {
         if (props.variant === 'cta') {
             return style.cta;
         } else if (props.variant === 'rsvp') {
-            return style.rsvp
+            return style.rsvp;
         } else if (props.variant === 'danger') {
-            return style.danger
+            return style.danger;
         }
-        return ''
+        return '';
     }
     return (
         <button className={`${style.btn} ${buttonVariant()}`} onClick={props.onClick}>
