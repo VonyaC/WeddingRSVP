@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react';
+import { Button } from './Button/Button';
 
 interface Props {
     
@@ -62,11 +63,12 @@ export const GuestForm = (props: Props) => {
                 })
             }
             <div className='btn-group side-by-side'>
-                <button className="btn" onClick={addGuestBox}>Add guest field</button>
-                <button className="btn" onClick={deleteGuestBox}>Delete field</button>
+                <Button variant='cta' onClick={addGuestBox}> Add guest field</Button>
+                <Button variant='danger' onClick={deleteGuestBox}> Remove field </Button>
+
             </div>
             <div className='btn-group'>
-                <button onClick={addToGuestList} className='btn btn-rsvp'>Add to list</button>
+                <Button variant='rsvp' onClick={addToGuestList}>Add to list</Button>
             </div>
                 
 

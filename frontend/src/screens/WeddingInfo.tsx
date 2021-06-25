@@ -1,5 +1,6 @@
 import React from 'react'
 import {useLocation} from 'react-router-dom'
+import { Card } from '../components/Card/Card';
 
 interface Props {
     
@@ -17,11 +18,10 @@ export const WeddingInfo = (props: Props) => {
     }
     
     return (
-        <div className='row'> 
-            <div className="rsvp-card">
+
+        <Card>
                 <p>Thank you. Your response has been recorded.{isAttending && ' Your invitation will be sent at a later date.'}</p>
-                <p><span>You can safely close this page.</span></p>
-            </div>
-        </div>
+                <p><span>You can safely close this page.</span></p>   
+        </Card>
     )
 }

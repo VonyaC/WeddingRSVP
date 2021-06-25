@@ -1,5 +1,6 @@
 import React from 'react'
 import engagementPhoto from './../assets/placeholder-img.jpeg'
+import {Button} from './../components/Button/Button'
 
 import { Link } from 'react-router-dom';
 
@@ -12,9 +13,7 @@ const Home: React.FC = () => {
                     <h4>August 14th 2021</h4>
                     <h1>Save the date </h1>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. In accusamus atque error ipsa, veritatis maiores voluptas temporibus culpa quam sapiente accusantium quisquam ut! Nisi voluptas quidem reprehenderit eligendi voluptatum, iusto nulla voluptate corrupti. Culpa iure, blanditiis unde, ex repudiandae aut itaque expedita veniam praesentium necessitatibus repellendus minima fuga maxime esse similique? Illo nemo sunt necessitatibus harum omnis! Numquam, pariatur quo!</p>
-                    <Link to='/rsvp'><button className='btn cta-btn'>RSVP Now</button></Link>
-                    
-                        
+                    <Link to='/rsvp'><Button variant='cta'> RSVP Now</Button></Link>
 
                     </div>
                 <div className="right-box box">

@@ -1,0 +1,49 @@
+.btn {
+    padding: 12px 32px;
+    border-radius: 4px;
+    border: 0;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 16px;
+    width: 80%;
+    max-width: 300px;
+    
+}
+  
+.rsvp {
+    background: linear-gradient(90deg, rgba(7,109,222,1) 0%, rgba(0,121,255,1) 100%);
+    color: #FFFFFF;
+}
+.rsvp:hover {
+    background: #489fff;
+}
+
+.rsvp:active {
+    background: #025ec3;
+}
+
+.cta {
+    background-color: #2B39BB;
+    color: #FFF;
+}
+
+.danger {
+    background-color: #FF3F38;
+    color: #FFFFFF;
+}
+.danger:hover {
+    background-color: #FF5938;
+}
+.danger:active {
+    background-color: #D60E00;
+}
+
+@media (max-width: 480px) {
+    .btn {
+        width: 100%;
+        max-width: 500px;
+    }
+}

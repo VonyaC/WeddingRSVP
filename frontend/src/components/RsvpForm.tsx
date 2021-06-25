@@ -1,6 +1,9 @@
 import React,{useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
+import {Button} from './../components/Button/Button';
+import {Card} from './../components/Card/Card';
+import { Textfield } from './TextField/Textfield';
 
 export const RsvpForm = () => {
     const [code, setCode] = useState('');
@@ -28,22 +31,20 @@ export const RsvpForm = () => {
 
     return (
         <div className="rsvp">
-                <div className="rsvp-card">
+                <Card>
                     <div className="intro-box">
                         <h4>RSVP for the wedding of Hepburn + Cox.</h4>
                     </div>
                     <div className="rsvp-form">
                         <form onSubmit={checkReservation} className='rsvp-form'>
-                            <label htmlFor="findRSVP" className='form-label'>Enter your invitation code</label><br />
-                            <input type="text" id='findRSVP' className='textfield'name='code' onChange={(e: any)=> { setCode(e.target.value)}}/>
-                                {statusError!=='' && <div className='form-error'>{statusError}</div>}
-                            <input type="submit" value="Check code" className='btn btn-rsvp'/>
+                            <Textfield id='findRSVP' statusError={statusError} label='Enter your invitation code' onChange={(e: any)=> { setCode(e.target.value)}}/>
+                            <Button variant='rsvp'>Check code</Button>
                         </form>
                         <div className="intro-box">
                         <p className='small-text'>* July 15th will be the last day to RSVP your attendance. Contact Charvonya or Stefano if there are any changes after this date.</p>
                         </div>
                     </div>
-                </div>
+                </Card> 
         </div>
     )
 }
