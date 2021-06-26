@@ -1,4 +1,3 @@
-from operator import rshift
 from flask import Flask, request, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
@@ -12,14 +11,23 @@ CORS(app)
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 load_dotenv()
-uri = os.getenv("DATABASE_URL")  # or other relevant config var
-if uri.startswith("postgres://"):
-    uri = uri.replace("postgres://", "postgresql://", 1)
 
+ENV = 'dev'
 
 # Database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
-    os.path.join(basedir, 'db.sqlite')
+if ENV == 'dev':
+    app.debug = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
+        os.path.join(basedir, 'db.sqlite')
+else:
+    uri = os.getenv("DATABASE_URL")  # or other relevant config var
+    if uri.startswith("postgres://"):
+        uri = uri.replace("postgres://", "postgresql://", 1)
+
+    app.debug = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = uri
+    print(uri)
+
 # app.config['SQLALCHEMY_DATABASE_URI'] = uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Init db
@@ -78,11 +86,7 @@ def get_guests():
     result = guests_schema.dump(all_guests)
     return jsonify(result)
 
-
-# @app.route('/guest/<id>', methods=['GET'])
-# def get_guest(id):
-#     guest = Guest.query.get(id)
-#     return guest_schema.jsonify(guest)
+# Get guest by rsvp code
 
 
 @app.route('/guest/<code>', methods=['GET'])
@@ -93,31 +97,8 @@ def get_guest(code):
         abort(400, "You aren not a guest. Sorry, but you can still buy a gift")
     return jsonify(result)
 
+# Update guest
 
-# @app.route('/guest/<code>', methods=['PATCH'])
-# def update_guest(code):
-    # guest = Guest.query.get(id)
-
-    # Get all gues attached to the invite code
-    # guest = Guest.query.filter_by(invite_code=code).all()
-    # result = guests_schema.dump(guest)
-
-    # Check the rsvp status that comes from the frontend to see if it matches what is in the db
-    # If they are different, update the db using the status from the frontend
-
-    # guest = Guest.query.get(id)
-
-    # guest_rsvp = request.json['rsvp']
-
-    # name = request.json['name']
-    # rsvp = request.json['rsvp']
-    # invite_code = request.json['invite_code']
-
-    # guest.name = name
-    # guest.rsvp = rsvp
-    # guest.invite_code = invite_code
-    # db.session.commit()
-    # return jsonify(guest_rsvp)
 
 @app.route('/guest/<code>', methods=['PATCH'])
 def update_guest(code):
@@ -139,6 +120,8 @@ def update_guest(code):
     db.session.commit()
 
     return jsonify(temp)
+
+# delete guest
 
 
 @app.route('/guest/<id>', methods=['DELETE'])
