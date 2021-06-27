@@ -1,3 +1,4 @@
+from typing_extensions import runtime
 from flask import Flask, request, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
@@ -11,11 +12,10 @@ CORS(app)
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 load_dotenv()
-
-ENV = 'dev'
+env = os.environ.get("PYTHON_ENV")
 
 # Database
-if ENV == 'dev':
+if env == 'dev':
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
         os.path.join(basedir, 'db.sqlite')
@@ -41,8 +41,8 @@ ma = Marshmallow(app)
 class Guest(db.Model):
     __tablename__ = 'guest'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), unique=True)
-    rsvp = db.Column(db.Boolean, nullable=False)
+    name = db.Column(db.String(100),  nullable=False, unique=True)
+    rsvp = db.Column(db.Boolean, nullable=False, default=False)
     invite_code = db.Column(db.String(6), nullable=False)
 
     def __init__(self, name, rsvp, invite_code):
@@ -67,15 +67,25 @@ guests_schema = GuestSchema(many=True)
 
 @app.route('/guest', methods=['POST'])
 def add_guest():
-    name = request.json['name']
-    rsvp = request.json['rsvp']
-    invite_code = request.json['invite_code']
+    # name = request.json['name']
+    # rsvp = request.json['rsvp']
+    # invite_code = request.json['invite_code']
 
-    new_guest = Guest(name, rsvp, invite_code)
+    # new_guest = Guest(name, rsvp, invite_code)
 
-    db.session.add(new_guest)
+    # db.session.add(new_guest)
+    # db.session.commit()
+    # return guest_schema.jsonify(new_guest)
+    data = request.json
+
+    temp = []
+    for i in range(0, len(data)):
+        new_guest = Guest(data[i]['name'], data[i]
+                          ['rsvp'] or False, data[i]['invite_code'])
+        db.session.add(new_guest)
     db.session.commit()
-    return guest_schema.jsonify(new_guest)
+    return jsonify(new_guest.invite_code)
+
 
 # Get All Guests
 
