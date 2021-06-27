@@ -65,7 +65,7 @@ guests_schema = GuestSchema(many=True)
 # Create a Guest
 
 
-@app.route('/guest', methods=['POST'])
+@app.route('/guests', methods=['POST'])
 def add_guest():
     # name = request.json['name']
     # rsvp = request.json['rsvp']
