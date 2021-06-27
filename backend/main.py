@@ -1,8 +1,9 @@
-from typing_extensions import runtime
 from flask import Flask, request, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 import os
+import random
+import string
 from dotenv import load_dotenv
 from flask_cors import CORS
 
@@ -38,8 +39,14 @@ ma = Marshmallow(app)
 # Guest Class/Model
 
 
+def generate_code():
+    letters = string.ascii_uppercase
+    result_str = ''.join(random.choice(letters) for i in range(6))
+
+    return result_str
+
+
 class Guest(db.Model):
-    __tablename__ = 'guest'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100),  nullable=False)
     rsvp = db.Column(db.Boolean, nullable=False, default=False)
@@ -77,10 +84,12 @@ def add_guest():
     # db.session.commit()
     # return guest_schema.jsonify(new_guest)
     data = request.json
+    code = generate_code()
 
     temp = []
     for i in range(0, len(data)):
-        new_guest = Guest(data[i]['name'], False, data[i]['invite_code'])
+        new_guest = Guest(data[i]['name'], data[i]
+                          ['rsvp'] or False, code)
         db.session.add(new_guest)
     db.session.commit()
     return jsonify(new_guest.invite_code)
