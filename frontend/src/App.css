@@ -178,42 +178,11 @@ body {
   font-family: 'Arsenal';
   text-transform: uppercase;
 }
-/* Text */
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  padding: 0;
-  color: #252525;
-  font-family: 'Philosopher';
-}
-h4, p {
-  margin-bottom: 8px;
-  font-weight: 300;
-}
-h1, h3 {
-  margin-bottom: 16px;
-}
-h1, h2 {
-  text-transform: uppercase;
-  color: #2B39BB;
-}
-.small-text {
-  font-size: 14px;
-}
-p {
-  line-height: 140%;
-  letter-spacing: 0.05em;
-  color: #565656
-}
+
 p span {
   font-weight: 600;
 }
-/*------------ */
 
-
-
-.gift-subheader {
-  font-weight: 600;
-}
 
 .gift-section {
   margin-top: 40px;

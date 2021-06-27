@@ -1,9 +1,14 @@
 import React,{useState} from 'react';
+import { config } from '../../constants';
+
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import {Button} from '../../components/Button/Button';
 import {Card} from '../../components/Card/Card';
 import { Textfield } from '../../components/TextField/Textfield';
+import { H4, SmallText } from '../../components/Text/Typography';
+
+
 
 export const RsvpForm = () => {
     const [code, setCode] = useState('');
@@ -13,7 +18,7 @@ export const RsvpForm = () => {
     const checkReservation = (e: any) => {
         e.preventDefault();
         if (code !== '') {
-            axios.get(`https://wedding-backend-rsvp.herokuapp.com/guest/${code}`).then(res => {
+            axios.get(`${config.url.API_URL}/guest/${code}`).then(res => {
                 const { data } = res
                 if (data.length > 0) {
                     setStatusError('');
@@ -33,7 +38,7 @@ export const RsvpForm = () => {
         <div className="rsvp">
                 <Card>
                     <div className="intro-box">
-                        <h4>RSVP for the wedding of Hepburn + Cox.</h4>
+                        <H4>RSVP for the wedding of Hepburn + Cox.</H4>
                     </div>
                     <div className="rsvp-form">
                         <form onSubmit={checkReservation} className='rsvp-form'>
@@ -41,7 +46,7 @@ export const RsvpForm = () => {
                             <Button variant='rsvp'>Check code</Button>
                         </form>
                         <div className="intro-box">
-                        <p className='small-text'>* July 15th will be the last day to RSVP your attendance. Contact Charvonya or Stefano if there are any changes after this date.</p>
+                            <SmallText>* July 15th will be the last day to RSVP your attendance. Contact Charvonya or Stefano if there are any changes after this date.</SmallText>
                         </div>
                     </div>
                 </Card> 

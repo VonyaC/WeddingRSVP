@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { Typography } from '../../components/Text/Typography';
+import { H3, P } from '../../components/Text/Typography';
+import {config} from '../../constants'
 
 interface Props {
     
@@ -10,7 +11,7 @@ export const GuestList = (props: Props) => {
     const [guest, setGuest] = useState<any>([]);
 
     useEffect(()=>{
-        axios.get(`https://wedding-backend-rsvp.herokuapp.com/guests`).then(res => {
+        axios.get(`${config.url.API_URL}/guests`).then(res => {
             const { data } = res
             setGuest(data);
 
@@ -22,24 +23,24 @@ export const GuestList = (props: Props) => {
 
     return (
         <div className='row'>
-            <div><Typography variant='h3'> Coming </Typography></div>
+            <div><H3> Coming </H3></div>
             {
                 guest.map((g) => {
 
                     return (
                         <div key={g.id}> 
-                            {g.rsvp && <Typography variant='p'> {` ${g.name} ${g.invite_code}`}</Typography>}
+                            {g.rsvp && <P> {` ${g.name} ${g.invite_code}`}</P>}
                         </div>
                     )
                 })
             }
-            <div><Typography variant='h3'>Not coming</Typography></div>
+            <div><H3>Not coming</H3></div>
 
             {
                 guest.map((g) => {
                     return (
                         <div key={g.id}> 
-                            {!g.rsvp && <Typography variant='p'> {` ${g.name} ${g.invite_code}`}</Typography>}
+                            {!g.rsvp && <P> {` ${g.name} ${g.invite_code}`}</P>}
                         </div>
                     )
                 })
