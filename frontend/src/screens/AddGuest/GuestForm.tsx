@@ -1,20 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import { Button } from '../../components/Button/Button';
 import { Textfield } from '../../components/TextField/Textfield';
+import axios from 'axios';
+import { config } from '../../constants';
 
 interface Props {
     
 }
 
-const generateCode = () => {
-    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let randomString = ''; 
+// const generateCode = () => {
+//     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+//     let randomString = ''; 
     
-    for (let i = 0; i < 6; i++) {
-      randomString += characters.charAt(Math.floor(Math.random()*characters.length))
-    }
-    return randomString;
-}
+//     for (let i = 0; i < 6; i++) {
+//       randomString += characters.charAt(Math.floor(Math.random()*characters.length))
+//     }
+//     return randomString;
+// }
 
 export const GuestForm = (props: Props) => {
     const [inviteCode, setInviteCode] = useState('');
@@ -26,13 +28,21 @@ export const GuestForm = (props: Props) => {
         list[index]['invite_code'] = inviteCode;
         setFormInputs(list);
     }
-    useEffect(()=> {
-        setInviteCode(generateCode)
-    },[])
+    // useEffect(()=> {
+    //     setInviteCode(generateCode)
+    // },[])
 
     const addToGuestList = (e) => {
         e.preventDefault();
         console.log(formInputs)
+
+        axios.post(`${config.url.API_URL}/guests`, formInputs).then(res => {
+            const { data } = res
+            setInviteCode(data);
+
+        }).catch(()=> {
+            return console.log('didn\'t work')
+        });
     }
     const addGuestBox= (e) => {
         e.preventDefault();
