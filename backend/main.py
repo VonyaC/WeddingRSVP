@@ -49,7 +49,7 @@ def generate_code():
 class Guest(db.Model):
     __tablename__ = 'guest'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100),  nullable=False, unique=True)
+    name = db.Column(db.String(100),  nullable=False)
     rsvp = db.Column(db.Boolean, nullable=False, default=False)
     invite_code = db.Column(db.String(6), nullable=False)
 
