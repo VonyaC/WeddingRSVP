@@ -1,5 +1,4 @@
 import React,{useState} from 'react';
-import { config } from '../../constants';
 
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
@@ -18,7 +17,7 @@ export const RsvpForm = () => {
     const checkReservation = (e: any) => {
         e.preventDefault();
         if (code !== '') {
-            axios.get(`${config.url.API_URL}/guest/${code}`).then(res => {
+            axios.get(`https://wedding-backend-rsvp.herokuapp.com/guest/${code}`).then(res => {
                 const { data } = res
                 if (data.length > 0) {
                     setStatusError('');

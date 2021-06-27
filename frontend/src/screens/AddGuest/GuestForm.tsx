@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { Button } from '../../components/Button/Button';
 import { Textfield } from '../../components/TextField/Textfield';
 import axios from 'axios';
-import { config } from '../../constants';
 
 interface Props {
     
@@ -36,7 +35,7 @@ export const GuestForm = (props: Props) => {
         e.preventDefault();
         console.log(formInputs)
 
-        axios.post(`${config.url.API_URL}/guests`, formInputs).then(res => {
+        axios.post(`https://wedding-backend-rsvp.herokuapp.com/guests`, formInputs).then(res => {
             const { data } = res
             setInviteCode(data);
 

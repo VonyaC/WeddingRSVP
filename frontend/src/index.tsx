@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './assets/fonts/Arsenal/Arsenal-Bold.ttf'; 
+require('dotenv').config()
 
 ReactDOM.render(
   <React.StrictMode>

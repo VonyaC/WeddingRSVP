@@ -1,4 +1,3 @@
-require('dotenv').config()
 const prod = {
     url: {
         API_URL: `https://wedding-backend-rsvp.herokuapp.com`
@@ -11,4 +10,4 @@ const dev = {
     }
 }
 
-export const config = process.env.NODE_ENV === 'development'? dev : prod
+export const config = process.env.REACT_APP_ENV === 'development' ? dev : prod;
