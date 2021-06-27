@@ -1,5 +1,5 @@
 import React from 'react'
-import { GuestForm } from '../components/GuestForm'
+import { GuestForm } from './GuestForm'
 
 interface Props {
     

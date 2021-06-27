@@ -1,4 +1,6 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react';
+import { Button } from '../../components/Button/Button';
+import { Textfield } from '../../components/TextField/Textfield';
 
 interface Props {
     
@@ -54,19 +56,18 @@ export const GuestForm = (props: Props) => {
                 formInputs.map((f, i)=> {
                     return (
                         <div key={f.id}>
-                            <label htmlFor={f.formName} className='form-label'>{f.formName}</label><br />
-                            <input type="text" id={f.formName} className='textfield' name={f.formName } onChange={(e: any)=> { handleChange(e, i)}}/>
-                                {/* {statusError!=='' && <div className='form-error'>{statusError}</div>} */}
+                            <Textfield id={f.formName} statusError={''} label={f.formName} onChange={(e: any)=> { handleChange(e, i)}}/>
                         </div>
                     )
                 })
             }
             <div className='btn-group side-by-side'>
-                <button className="btn" onClick={addGuestBox}>Add guest field</button>
-                <button className="btn" onClick={deleteGuestBox}>Delete field</button>
+                <Button variant='cta' onClick={addGuestBox}> Add guest field</Button>
+                <Button variant='danger' onClick={deleteGuestBox}> Remove field </Button>
+
             </div>
             <div className='btn-group'>
-                <button onClick={addToGuestList} className='btn btn-rsvp'>Add to list</button>
+                <Button variant='rsvp' onClick={addToGuestList}>Add to list</Button>
             </div>
                 
 

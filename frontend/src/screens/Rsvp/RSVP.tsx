@@ -1,9 +1,9 @@
 import React from 'react';
-import { RsvpForm } from '../components/RsvpForm';
+import { RsvpForm } from './RsvpForm';
 
 const RSVP: React.FC = () => {
     return (
-        <div className='rsvp-page row'>
+        <div className='row'>
             <RsvpForm />
         </div>
     )

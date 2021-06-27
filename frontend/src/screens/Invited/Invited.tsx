@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useParams, useHistory} from 'react-router-dom'
+import { Card } from '../../components/Card/Card';
+import {Button} from '../../components/Button/Button';
 
 export const Invited = () => {
 
@@ -44,28 +46,25 @@ export const Invited = () => {
     
     
     return (
-        <div className="rsvp-page">
-            <div className='rsvp-card'>
-            <h2>Are you attending?</h2>
-            <div className="guestList">
-                {invited.map((person: any)=>{
-                return <div className="guest-rsvp" key={person.id}>
-                    <div className="guest"><p>{person.name}</p></div>
-                        <div className="rsvp-option">
-                            <div className="button r" id="button-1">
-                                <input type="checkbox" onChange={updateRsvpStatus} value={person.id} defaultChecked={person.rsvp} className="checkbox" />
-                            <div className="knobs"></div>
-                            <div className="layer"></div>
+        <div className="row">
+            <Card>
+                <h2>Are you attending?</h2>
+                <div className="guestList">
+                    {invited.map((person: any)=>{
+                    return <div className="guest-rsvp" key={person.id}>
+                        <div className="guest"><p>{person.name}</p></div>
+                            <div className="rsvp-option">
+                                <div className="button r" id="button-1">
+                                    <input type="checkbox" onChange={updateRsvpStatus} value={person.id} defaultChecked={person.rsvp} className="checkbox" />
+                                <div className="knobs"></div>
+                                <div className="layer"></div>
+                            </div>
                         </div>
                     </div>
+                    })}
+                <Button variant='rsvp' onClick={submitRsvp} > Done </Button>
                 </div>
-                })}
-            <input type="button" value="Done" className='btn btn-rsvp' onClick={submitRsvp} />
-
-
-
-            </div>
-            </div>
+            </Card>
         </div>
 
     )

@@ -2,8 +2,8 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import './App.css';
 import  { Home, RSVP, Invited, WeddingInfo, GuestList }  from './screens/screens';
-import { Navigation } from './components/Navigation';
-import { AddGuest } from './screens/AddGuest';
+import { Navigation } from './components/Navigation/Navigation';
+import { AddGuest } from './screens/AddGuest/AddGuest';
 
 function App() {
   return (
