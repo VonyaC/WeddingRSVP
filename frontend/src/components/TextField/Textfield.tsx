@@ -12,7 +12,7 @@ export const Textfield = (props: Props) => {
     return (
         <>
             <Label htmlFor={props.id || ''}> {props.label}</Label>
-            <input type={props.type || 'text'} id={props.id}className={style.textfield} name='code' onChange={props.onChange}/>
+            <input type={props.type || 'text'} id={props.id} className={style.textfield} name='code' onChange={props.onChange}/>
             {props.statusError!=='' && <div className={style.error}>{props.statusError || ''}</div>}
         </>
     )

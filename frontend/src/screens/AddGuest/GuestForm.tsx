@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import { Button } from './Button/Button';
-import { Textfield } from './TextField/Textfield';
+import { Button } from '../../components/Button/Button';
+import { Textfield } from '../../components/TextField/Textfield';
 
 interface Props {
     

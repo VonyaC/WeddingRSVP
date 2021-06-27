@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useParams, useHistory} from 'react-router-dom'
-import { Card } from '../components/Card/Card';
+import { Card } from '../../components/Card/Card';
+import {Button} from '../../components/Button/Button';
 
 export const Invited = () => {
 
@@ -61,7 +62,7 @@ export const Invited = () => {
                         </div>
                     </div>
                     })}
-                <input type="button" value="Done" className='btn btn-rsvp' onClick={submitRsvp} />
+                <Button variant='rsvp' onClick={submitRsvp} > Done </Button>
                 </div>
             </Card>
         </div>

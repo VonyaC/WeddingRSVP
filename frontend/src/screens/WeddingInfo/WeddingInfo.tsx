@@ -1,8 +1,7 @@
 import React from 'react'
 import {useLocation} from 'react-router-dom'
-import { Card } from '../components/Card/Card';
-import { Typography } from '../components/Text/Typography';
-import style from '../components/Text/Typography.module.css'
+import { Card } from '../../components/Card/Card';
+import { Typography } from '../../components/Text/Typography';
 
 interface Props {
     
@@ -23,7 +22,7 @@ export const WeddingInfo = (props: Props) => {
 
         <Card>
                 <Typography variant='p'>Thank you. Your response has been recorded.{isAttending && ' Your invitation will be sent at a later date.'}</Typography>
-                <Typography variant='p'><span className={style.bold}>You can safely close this page.</span></Typography>   
+                <Typography variant='p'><span className={''}>You can safely close this page.</span></Typography>   
         </Card>
     )
 }

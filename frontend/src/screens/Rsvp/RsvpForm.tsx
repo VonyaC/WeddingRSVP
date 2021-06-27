@@ -1,9 +1,9 @@
 import React,{useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
-import {Button} from './../components/Button/Button';
-import {Card} from './../components/Card/Card';
-import { Textfield } from './TextField/Textfield';
+import {Button} from '../../components/Button/Button';
+import {Card} from '../../components/Card/Card';
+import { Textfield } from '../../components/TextField/Textfield';
 
 export const RsvpForm = () => {
     const [code, setCode] = useState('');
@@ -37,7 +37,7 @@ export const RsvpForm = () => {
                     </div>
                     <div className="rsvp-form">
                         <form onSubmit={checkReservation} className='rsvp-form'>
-                            <Textfield id='findRSVP' statusError={statusError} label='Enter your invitation code' onChange={(e: any)=> { setCode(e.target.value)}}/>
+                            <Textfield id='findRSVP' statusError={statusError} label='Enter your invitation code' onChange={(e: any)=> setCode(e.target.value.toUpperCase())}/>
                             <Button variant='rsvp'>Check code</Button>
                         </form>
                         <div className="intro-box">

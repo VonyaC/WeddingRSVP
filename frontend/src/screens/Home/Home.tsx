@@ -1,6 +1,6 @@
 import React from 'react'
-import engagementPhoto from './../assets/placeholder-img.jpeg'
-import {Button} from './../components/Button/Button'
+import engagementPhoto from '../../assets/placeholder-img.jpeg'
+import {Button} from '../../components/Button/Button'
 
 import { Link } from 'react-router-dom';
 
