@@ -88,8 +88,7 @@ def add_guest():
 
     temp = []
     for i in range(0, len(data)):
-        new_guest = Guest(data[i]['name'], data[i]
-                          ['rsvp'] or False, code)
+        new_guest = Guest(data[i]['name'], False, code)
         db.session.add(new_guest)
     db.session.commit()
     return jsonify(new_guest.invite_code)
