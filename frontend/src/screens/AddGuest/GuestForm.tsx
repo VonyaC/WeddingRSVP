@@ -32,12 +32,13 @@ export const GuestForm = (props: Props) => {
     // },[])
 
     const addToGuestList = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         console.log(formInputs)
 
         axios.post(`https://wedding-backend-rsvp.herokuapp.com/guests`, formInputs).then(res => {
             const { data } = res
             setInviteCode(data);
+            window.location.reload();
 
         }).catch(()=> {
             return console.log('didn\'t work')
