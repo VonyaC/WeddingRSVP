@@ -32,7 +32,7 @@ export const GuestForm = (props: Props) => {
     // },[])
 
     const addToGuestList = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         console.log(formInputs)
 
         axios.post(`https://wedding-backend-rsvp.herokuapp.com/guests`, formInputs).then(res => {
