@@ -201,7 +201,10 @@ p span {
 .btn-group {
   margin-bottom: 16px;
 }
-
+.guestList:first-child {
+  margin-bottom: 40px;
+  border-bottom: 1px black solid;
+}
 @media (max-width: 480px) {
   .intro-box {
     width: 100%;

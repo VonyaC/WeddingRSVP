@@ -8,6 +8,8 @@ interface Props {
 
 export const GuestList = (props: Props) => {
     const [guest, setGuest] = useState<any>([]);
+    const [coming, setComing] = useState<any>([]);
+    const [notComing, setNotComing] = useState<any>([]);
 
     useEffect(()=>{
         axios.get(`https://wedding-backend-rsvp.herokuapp.com/guests`).then(res => {
@@ -23,7 +25,8 @@ export const GuestList = (props: Props) => {
                     notComing.push(data[i]);
                 }
             } 
-            console.log(coming.length, notComing.length)
+            setComing(coming);
+            setNotComing(notComing);
             setGuest(data);
 
         }).catch(()=> {
@@ -31,45 +34,43 @@ export const GuestList = (props: Props) => {
         });
 
     },[])
-    const guestList = (status: string) => {
-        const coming: any = [];
-        const notComing: any = []
-        
-        for (let i = 0; i< guest.length; i++) {
-            if (guest[i].rsvp) {
-                 coming.push(guest[i]);
-            } else {
-                notComing.push(guest[i]);
-            }
-        } 
 
-        return status === 'coming' ? coming : notComing
-        
-    }
     return (
         <div className='row'>
-            <div><H3> Coming </H3></div>
-            {
-                guest.map((g) => {
+            <div className='guestList'>
+                <div><H3> Coming </H3></div>
+                <table>
+                {
+                    coming.map((g, index) => {
 
-                    return (
-                        <div key={g.id}> 
-                            {g.rsvp && <P> {` ${g.name} ${g.invite_code}`}</P>}
-                        </div>
-                    )
-                })
-            }
-            <div><H3>Not coming</H3></div>
-
-            {
-                guest.map((g) => {
-                    return (
-                        <div key={g.id}> 
-                            {!g.rsvp && <P> {` ${g.name} ${g.invite_code}`}</P>}
-                        </div>
-                    )
-                })
-            }
+                        return (
+                            <tr key={g.id}> 
+                                <td> {index+1}.</td> 
+                                <td>{g.name}</td> 
+                                <td>{g.invite_code}</td>
+                            </tr>
+                        )
+                    })
+                }
+                </table>
+            </div>
+            <div className='guestList'>
+                <div><H3>Not coming</H3></div>
+                <table>
+                {
+                    notComing.map((g, index) => {
+                        return (
+                            <tr key={g.id}> 
+                                <td> {index+1}.</td> 
+                                <td>{g.name}</td> 
+                                <td>{g.invite_code}</td>
+                            </tr>
+                        )
+                    })
+                }
+                </table>
+            </div>
+            <P>Total: {guest.length}</P>
     
         </div>
     )
