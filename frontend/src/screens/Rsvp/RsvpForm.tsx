@@ -45,7 +45,7 @@ export const RsvpForm = () => {
                             <Button variant='rsvp'>Check code</Button>
                         </form>
                         <div className="intro-box">
-                            <SmallText>* July 15th will be the last day to RSVP your attendance. Contact Charvonya or Stefano if there are any changes after this date.</SmallText>
+                            <SmallText>* July 21st will be the last day to RSVP your attendance. Contact Charvonya or Stefano if there are any changes after this date.</SmallText>
                         </div>
                     </div>
                 </Card> 
