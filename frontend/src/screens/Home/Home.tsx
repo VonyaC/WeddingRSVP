@@ -1,5 +1,5 @@
 import React from 'react'
-import engagementPhoto from '../../assets/placeholder-img.jpeg'
+import engagementPhoto from '../../assets/engagement-1.jpg'
 import {Button} from '../../components/Button/Button'
 
 import { Link } from 'react-router-dom';
@@ -11,9 +11,9 @@ const Home: React.FC = () => {
         <>
             <main className="side-by-side row main">
                 <div className="left-box box">
-                    <H4>August 14th 2021</H4>
-                    <H1>Save the date </H1>
-                    <P>Lorem ipsum dolor sit, amet consectetur adipisicing elit. In accusamus atque error ipsa, veritatis maiores voluptas temporibus culpa quam sapiente accusantium quisquam ut! Nisi voluptas quidem reprehenderit eligendi voluptatum, iusto nulla voluptate corrupti. Culpa iure, blanditiis unde, ex repudiandae aut itaque expedita veniam praesentium necessitatibus repellendus minima fuga maxime esse similique? Illo nemo sunt necessitatibus harum omnis! Numquam, pariatur quo!</P>
+                    <H4>Hepburn's wedding 2021</H4>
+                    <H1>Reserve your seat </H1>
+                    <P>Stefano Hepburn and Charvonya Cox, together since 2018, have decided to take the next level and solidify their commitment to each other in holy matrimony. Join us on August 14th at 2 PM as we begin our lifelong journey as Husband and Wife.</P>
                     <Link to='/rsvp'><Button variant='cta'> RSVP Now</Button></Link>
 
                     </div>
@@ -29,7 +29,7 @@ const Home: React.FC = () => {
                                 <H3>Gift selection</H3>
                                 <div className="rsvp-item">
                                     <H4>Kellys</H4>
-                                    <P>Stefano and Charvonya Hepburn </P>
+                                    <P>Stefano Hepburn and Charvonya Cox </P>
                                 </div>
 
                             </div>
