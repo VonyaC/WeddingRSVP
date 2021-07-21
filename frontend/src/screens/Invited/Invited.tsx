@@ -20,7 +20,6 @@ export const Invited = () => {
         }
     };
     const submitRsvp = () => {
-        // console.log(rsvp);
         const attending : any = []
         axios.patch(`https://wedding-backend-rsvp.herokuapp.com/guest/${code}`,rsvp).then(res => {
             const {data} = res;
@@ -33,8 +32,14 @@ export const Invited = () => {
 
         })
     };
-
+    const closedRsvp = () => {
+        if (new Date() >= new Date(2021, 6, 22)) {
+            history.push({pathname: `/closed`});
+        }
+    }
+    
     useEffect(()=>{
+        closedRsvp();
         axios.get(`https://wedding-backend-rsvp.herokuapp.com/guest/${code}`).then(res => {
             const { data } = res
             setInvited(data);

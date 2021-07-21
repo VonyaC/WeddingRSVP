@@ -17,7 +17,7 @@ export const RsvpForm = () => {
     const checkReservation = (e: any) => {
         e.preventDefault();
         if (code !== '') {
-            axios.get(`https://wedding-backend-rsvp.herokuapp.com/guest/${code}`).then(res => {
+             axios.get(`https://wedding-backend-rsvp.herokuapp.com/guest/${code}`).then(res => {
                 const { data } = res
                 if (data.length > 0) {
                     setStatusError('');
