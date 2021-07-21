@@ -4,6 +4,7 @@ import './App.css';
 import  { Home, RSVP, Invited, WeddingInfo, GuestList }  from './screens/screens';
 import { Navigation } from './components/Navigation/Navigation';
 import { AddGuest } from './screens/AddGuest/AddGuest';
+import { ClosedRsvp } from './screens/ClosedRsvp/ClosedRsvp';
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
             <Route path='/invited/:code'> <Invited /></Route>
             <Route path='/guest-list'> <GuestList /></Route>
             <Route path='/add-guest'> <AddGuest /></Route>
+            <Route path='/closed'> <ClosedRsvp /></Route>
+
             <Route exact path='/' component={Home}/>
             <Redirect to='/not-found' /> 
             <Route path='/not-found' />
